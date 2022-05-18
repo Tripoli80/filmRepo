@@ -1,81 +1,26 @@
-/* Задание на урок:
-
-1) Первую часть задания повторить по уроку
-
-2) Создать функцию showMyDB, которая будет проверять свойство privat. Если стоит в позиции
-false - выводит в консоль главный объект программы
-
-3) Создать функцию writeYourGenres в которой пользователь будет 3 раза отвечать на вопрос 
-"Ваш любимый жанр под номером ${номер по порядку}". Каждый ответ записывается в массив данных
-genres
-
-P.S. Функции вызывать не обязательно*/
-'use strict';
-
-// Код возьмите из предыдущего домашнего 
-let numberOfFilms;
-
-function start() {
-    numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
-    while (numberOfFilms == null || isNaN(numberOfFilms) || numberOfFilms == '')
-        numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', '');
-
-}
+let lenhhtX;
 start();
 
-
-const personalMovieDB = {
-    count: numberOfFilms,
-    movies: {},
-    actors: {},
-    genres: [],
-    privat: false
-};
-
-function rememberMyFilms() {
-    for (let i = 0; i < 2; i++) {
-
-        let a = prompt('Один из последних просмотренных фильмов?', `${i}`),
-            b = prompt('На сколько оцените его?', '');
-        if (a !== '' && a !== NaN && a !== null && a !== undefined && a.length < 50) {
-            personalMovieDB.movies[a] = b;
-        } else i--;
-
+function start() {
+    lenhhtX = prompt("Input lenght cube edge", '')
+    console.log(isNaN(parseFloat(lenhhtX)))
+    while (isNaN(parseFloat(lenhhtX)))
+    {
+        alert("is not namber, reenter");
+        lenhhtX = prompt("Input lenght cube edge", '');
     }
 }
 
-rememberMyFilms();
 
-function myProfile() {
-    if (personalMovieDB.count < 10)
-        console.log("Просмотрено довольно мало фильмов ")
-    else if (personalMovieDB.count < 30)
-        console.log("Вы классический зритель")
-    else if (personalMovieDB.count >= 30)
-        console.log("Вы киноман")
-    else console.log("Error!")
+function calculetedSq(ln) {
+    let sq = Math.pow(ln, 2) * 6;
+    let cube = Math.pow(ln, 3);
+    return [sq, cube];
 }
 
-myProfile();
-writeYourGenres();
+let answer = calculetedSq(lenhhtX);
+getAnswer(answer[0], answer[1]);
 
-function showMyDB() {
-
-    if (personalMovieDB.privat== false)
-        console.log(personalMovieDB);
-    alert("Finish")
-
+function getAnswer(sq, cube) {
+    alert(`Обьем куба ${cube}, площадь всей поверхности ${sq}`)
 }
-
-function writeYourGenres() {
-    let zhanr;
-    for (let i = 3; i > 0; i--) {
-        zhanr = prompt(`Ваш любимый жанр под номером ${i}`, '');
-        if (zhanr == null || zhanr == '')
-            i++
-        else
-            personalMovieDB.genres.push(zhanr)
-    }
-
-}
-showMyDB();
